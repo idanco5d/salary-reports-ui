@@ -2,10 +2,13 @@ import './App.css'
 import {RoleCategoryPage} from "./pages/role-category/RoleCategoryPage.tsx";
 import {AuthProvider} from "./AuthContext.tsx";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {LoginPage} from "./LoginPage.tsx";
+import {LoginPage} from "./pages/LoginPage.tsx";
 import {AuthCallback} from "./AuthCallback.tsx";
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {RolePage} from "./pages/role/RolePage.tsx";
+import {ReportSalaryPage} from "./pages/report-salary/ReportSalaryPage.tsx";
+import {WelcomePage} from "./pages/WelcomePage.tsx";
+import {Layout} from "./Layout.tsx";
 
 const queryClient = new QueryClient()
 
@@ -14,11 +17,14 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/role-category" element={<RoleCategoryPage/>}/>
-                    <Route path="/role" element={<RolePage/>}/>
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/auth/callback" element={<AuthCallback/>}/>
-                    <Route path="/home" element={<RoleCategoryPage/>}/>
+                    <Route element={<Layout />}>
+                        <Route path="/home" element={<WelcomePage/>}/>
+                        <Route path="/create-salary" element={<ReportSalaryPage/>}/>
+                        <Route path="/role-category" element={<RoleCategoryPage/>}/>
+                        <Route path="/role" element={<RolePage/>}/>
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </QueryClientProvider>
