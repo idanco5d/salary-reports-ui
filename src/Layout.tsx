@@ -32,6 +32,7 @@ export const Layout = () => {
         setDrawerOpen(false);
     };
 
+    // TODO fix logout error
     const handleLogout = async () => {
         await logout();
         navigate('/login');
@@ -46,6 +47,7 @@ export const Layout = () => {
 
     const drawerWidth = 250;
 
+    // TODO refactor to different components
     return (
         <Box sx={{display: 'flex'}}>
             <AppBar position="fixed" sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}>

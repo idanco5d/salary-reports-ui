@@ -45,6 +45,7 @@ export const ReportSalaryPage = () => {
         setSelectedCategoryId(undefined);
     };
 
+    // TODO validations, refactor to different components
     return (
         <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
             <Typography variant="h3" gutterBottom>
