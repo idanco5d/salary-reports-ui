@@ -32,7 +32,6 @@ export const Layout = () => {
         setDrawerOpen(false);
     };
 
-    // TODO fix logout error
     const handleLogout = async () => {
         await logout();
         navigate('/login');
@@ -40,9 +39,10 @@ export const Layout = () => {
 
     const menuItems = [
         {label: 'Home', path: '/home'},
+        {label: 'View Salaries', path: '/view-salaries'},
         {label: 'Report Salary', path: '/create-salary'},
-        {label: 'Role Categories', path: '/role-category'},
         {label: 'Roles', path: '/role'},
+        {label: 'Role Categories', path: '/role-category'},
     ];
 
     const drawerWidth = 250;

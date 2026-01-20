@@ -9,6 +9,7 @@ import {RolePage} from "./pages/role/RolePage.tsx";
 import {ReportSalaryPage} from "./pages/report-salary/ReportSalaryPage.tsx";
 import {WelcomePage} from "./pages/WelcomePage.tsx";
 import {Layout} from "./Layout.tsx";
+import {ViewSalariesPage} from "./pages/view-salaries/ViewSalariesPage.tsx";
 
 const queryClient = new QueryClient()
 
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/create-salary" element={<ReportSalaryPage/>}/>
                         <Route path="/role-category" element={<RoleCategoryPage/>}/>
                         <Route path="/role" element={<RolePage/>}/>
+                        <Route path="/view-salaries" element={<ViewSalariesPage/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

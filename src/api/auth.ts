@@ -1,4 +1,6 @@
-const baseUrl = 'localhost:3001/auth';
+import {apiClient} from "./client.ts";
+
+const baseUrl = 'http://localhost:3001/auth';
 
 export async function loginCall() {
     const response = await fetch(baseUrl + '/login', {method: 'GET'});
@@ -7,7 +9,7 @@ export async function loginCall() {
 }
 
 export async function logoutCall() {
-    await fetch(baseUrl + '/logout', {method: 'POST'});
+    await apiClient.post(baseUrl + '/logout');
 }
 
 export async function refreshAccessToken() {
