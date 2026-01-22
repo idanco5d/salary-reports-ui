@@ -11,6 +11,7 @@ import {WelcomePage} from "./pages/WelcomePage.tsx";
 import {Layout} from "./Layout.tsx";
 import {ViewSalariesPage} from "./pages/view-salaries/ViewSalariesPage.tsx";
 import {UsersManagementPage} from "./pages/user-management/UsersManagementPage.tsx";
+import {ProtectedRoute} from "./ProtectedRoute.tsx";
 
 const queryClient = new QueryClient();
 
@@ -21,13 +22,16 @@ function App() {
                 <Routes>
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/auth/callback" element={<AuthCallback/>}/>
-                    <Route element={<Layout />}>
-                        <Route path="/home" element={<WelcomePage/>}/>
-                        <Route path="/create-salary" element={<ReportSalaryPage/>}/>
-                        <Route path="/role-category" element={<RoleCategoryPage/>}/>
-                        <Route path="/role" element={<RolePage/>}/>
-                        <Route path="/view-salaries" element={<ViewSalariesPage/>}/>
-                        <Route path="/users-management" element={<UsersManagementPage/>}/>
+
+                    <Route element={<ProtectedRoute />}>
+                        <Route element={<Layout />}>
+                            <Route path="/home" element={<WelcomePage/>}/>
+                            <Route path="/create-salary" element={<ReportSalaryPage/>}/>
+                            <Route path="/role-category" element={<RoleCategoryPage/>}/>
+                            <Route path="/role" element={<RolePage/>}/>
+                            <Route path="/view-salaries" element={<ViewSalariesPage/>}/>
+                            <Route path="/users-management" element={<UsersManagementPage/>}/>
+                        </Route>
                     </Route>
                 </Routes>
             </BrowserRouter>
