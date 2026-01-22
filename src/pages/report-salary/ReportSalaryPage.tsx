@@ -11,23 +11,30 @@ import {
     Select,
     Stack,
     TextField,
-    Typography
+    Typography,
+    FormHelperText
 } from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {createSalary, type CreateSalaryDto, Education, EmployerType} from "../../api/salary.ts";
 import {getRolesByCategoryId} from "../../api/role.ts";
 import {findAllCategories} from "../../api/roleCategory.ts";
 import {useQuery} from "@tanstack/react-query";
+import {validateSalary} from "./ValidateSalary.ts";
 
 export const ReportSalaryPage = () => {
     const [newSalary, setNewSalary] = useState<CreateSalaryDto>(getDefaultSalary());
     const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>(undefined);
     const [submitSuccess, setSubmitSuccess] = useState(false);
+    const [errors, setErrors] = useState<Record<string, string>>({});
+
+    useEffect(() => {
+        setErrors(validateSalary(newSalary));
+    }, [newSalary])
 
     const { data: categories } = useQuery({
         queryKey: ['roleCategories'],
         queryFn: findAllCategories,
-    })
+    });
 
     const { data: roles } = useQuery({
         queryKey: ['roles', selectedCategoryId],
@@ -51,7 +58,6 @@ export const ReportSalaryPage = () => {
         }, 2000);
     };
 
-    // TODO validations, refactor to different components
     return (
         <Container maxWidth="lg" sx={{mt: 4, mb: 4}}>
             <Typography variant="h3" gutterBottom>
@@ -71,6 +77,8 @@ export const ReportSalaryPage = () => {
                             value={newSalary.baseSalary}
                             onChange={(e) => setNewSalary({...newSalary, baseSalary: Number(e.target.value)})}
                             fullWidth
+                            error={!!errors.baseSalary}
+                            helperText={errors.baseSalary}
                         />
                     </Box>
 
@@ -85,6 +93,8 @@ export const ReportSalaryPage = () => {
                             value={newSalary.extras}
                             onChange={(e) => setNewSalary({...newSalary, extras: Number(e.target.value)})}
                             fullWidth
+                            error={!!errors.extras}
+                            helperText={errors.extras}
                         />
                     </Box>
 
@@ -93,7 +103,7 @@ export const ReportSalaryPage = () => {
                         <Typography variant="subtitle1" gutterBottom>
                             Role Category
                         </Typography>
-                        <FormControl fullWidth>
+                        <FormControl fullWidth error={!!errors.roleId}>
                             <InputLabel>Select Category</InputLabel>
                             <Select
                                 value={selectedCategoryId}
@@ -114,7 +124,7 @@ export const ReportSalaryPage = () => {
                         <Typography variant="subtitle1" gutterBottom>
                             Role
                         </Typography>
-                        <FormControl fullWidth disabled={!selectedCategoryId}>
+                        <FormControl fullWidth disabled={!selectedCategoryId} error={!!errors.roleId}>
                             <InputLabel>Select Role</InputLabel>
                             <Select
                                 value={newSalary.roleId}
@@ -127,6 +137,7 @@ export const ReportSalaryPage = () => {
                                     </MenuItem>
                                 ))}
                             </Select>
+                            {errors.roleId && <FormHelperText>{errors.roleId}</FormHelperText>}
                         </FormControl>
                     </Box>
 
@@ -141,6 +152,8 @@ export const ReportSalaryPage = () => {
                             value={newSalary.experienceYears}
                             onChange={(e) => setNewSalary({...newSalary, experienceYears: Number(e.target.value)})}
                             fullWidth
+                            error={!!errors.experienceYears}
+                            helperText={errors.experienceYears}
                         />
                     </Box>
 
@@ -149,7 +162,7 @@ export const ReportSalaryPage = () => {
                         <Typography variant="subtitle1" gutterBottom>
                             Education Level
                         </Typography>
-                        <FormControl fullWidth>
+                        <FormControl fullWidth error={!!errors.education}>
                             <InputLabel>Education</InputLabel>
                             <Select
                                 value={newSalary.education}
@@ -163,6 +176,7 @@ export const ReportSalaryPage = () => {
                                 <MenuItem value={Education.MASTER}>Master's Degree</MenuItem>
                                 <MenuItem value={Education.PHD}>PhD</MenuItem>
                             </Select>
+                            {errors.education && <FormHelperText>{errors.education}</FormHelperText>}
                         </FormControl>
                     </Box>
 
@@ -190,6 +204,8 @@ export const ReportSalaryPage = () => {
                             value={newSalary.vacationDays}
                             onChange={(e) => setNewSalary({...newSalary, vacationDays: Number(e.target.value)})}
                             fullWidth
+                            error={!!errors.vacationDays}
+                            helperText={errors.vacationDays}
                         />
                     </Box>
 
@@ -198,7 +214,7 @@ export const ReportSalaryPage = () => {
                         <Typography variant="subtitle1" gutterBottom>
                             Employer Type
                         </Typography>
-                        <FormControl fullWidth>
+                        <FormControl fullWidth error={!!errors.employerType}>
                             <InputLabel>Employer Type</InputLabel>
                             <Select
                                 value={newSalary.employerType}
@@ -215,6 +231,7 @@ export const ReportSalaryPage = () => {
                                 <MenuItem value={EmployerType.ISRAELI_NONTECH_CORP}>Israeli Non-Tech Corporation</MenuItem>
                                 <MenuItem value={EmployerType.OTHER}>Other</MenuItem>
                             </Select>
+                            {errors.employerType && <FormHelperText>{errors.employerType}</FormHelperText>}
                         </FormControl>
                     </Box>
 
@@ -229,6 +246,8 @@ export const ReportSalaryPage = () => {
                             value={newSalary.startYear || ''}
                             onChange={(e) => setNewSalary({...newSalary, startYear: e.target.value ? Number(e.target.value) : undefined})}
                             fullWidth
+                            error={!!errors.startYear}
+                            helperText={errors.startYear}
                         />
                     </Box>
 
@@ -243,6 +262,8 @@ export const ReportSalaryPage = () => {
                             value={newSalary.endYear || ''}
                             onChange={(e) => setNewSalary({...newSalary, endYear: e.target.value ? Number(e.target.value) : undefined})}
                             fullWidth
+                            error={!!errors.endYear}
+                            helperText={errors.endYear}
                         />
                     </Box>
 
@@ -251,6 +272,7 @@ export const ReportSalaryPage = () => {
                         variant="contained"
                         size="large"
                         onClick={handleSubmit}
+                        disabled={Object.keys(errors).length > 0}
                         sx={{
                             mt: 2,
                             backgroundColor: submitSuccess ? 'green' : undefined,
@@ -274,6 +296,6 @@ const getDefaultSalary: () => CreateSalaryDto = () => ({
     experienceYears: 0,
     education: Education.NONE,
     educationInRelevantField: true,
-    vacationDays: 0,
+    vacationDays: 12,
     employerType: EmployerType.OTHER,
 });
