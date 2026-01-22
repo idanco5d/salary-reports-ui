@@ -14,6 +14,9 @@ export function validateSalary(salary: CreateSalaryDto): Record<string, string> 
     if (salary.vacationDays < 12) {
         errors.vacationDays = 'Vacation days are at least 12 by Israeli law';
     }
+    if (salary.vacationDays > 365) {
+        errors.vacationDays = 'Vacation days cannot exceed 365';
+    }
     const currentYear = new Date().getFullYear();
     if (salary.startYear !== undefined && (salary.startYear < 1970 || salary.startYear > currentYear)) {
         errors.startYear = `Start year must be between 1970 and ${currentYear}`;
