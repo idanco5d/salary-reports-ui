@@ -20,7 +20,7 @@ import {useAuth} from './AuthContext';
 
 export const Layout = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const {logout} = useAuth();
+    const {logout, userRole} = useAuth();
     const navigate = useNavigate();
 
     const handleDrawerToggle = () => {
@@ -37,12 +37,16 @@ export const Layout = () => {
         navigate('/login');
     };
 
+    const adminMenuItems = [
+        {label: 'Users Management', path: '/users-management'},
+        {label: 'Roles', path: '/role'},
+        {label: 'Role Categories', path: '/role-category'},
+    ];
     const menuItems = [
         {label: 'Home', path: '/home'},
         {label: 'View Salaries', path: '/view-salaries'},
         {label: 'Report Salary', path: '/create-salary'},
-        {label: 'Roles', path: '/role'},
-        {label: 'Role Categories', path: '/role-category'},
+        ...(userRole === 'ADMIN' ? adminMenuItems : []),
     ];
 
     const drawerWidth = 250;

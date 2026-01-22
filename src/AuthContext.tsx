@@ -1,29 +1,37 @@
 import {createContext, type ReactNode, useContext, useEffect, useState} from 'react';
 import {clearAuthToken, getAuthToken, setAuthToken} from './api/client';
 import {logoutCall} from "./api/auth.ts";
+import type {UserRoleType} from "./api/user.ts";
 
 interface AuthContextType {
     isAuthenticated: boolean;
-    login: (token: string, userId: string) => void;
+    login: (token: string, userId: string, userRole: UserRoleType) => void;
     logout: () => Promise<void>;
     userId: string | null;
+    userRole: UserRoleType;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({children}: { children: ReactNode }) {
     const [isAuthenticated, setIsAuthenticated] = useState(!!getAuthToken());
     const [userId, setUserId] = useState<string | null>(null);
+    const [userRole, setUserRole] = useState<UserRoleType | null>(null);
 
     const logout = async () => {
-        await logoutCall();
-        clearAuthToken();
-        setIsAuthenticated(false);
+        logoutCall().finally(() => {
+                clearAuthToken();
+                setIsAuthenticated(false);
+                setUserId(null);
+                setUserRole(null);
+            }
+        )
     };
 
-    const login = (token: string, userId: string) => {
+    const login = (token: string, userId: string, userRole: UserRoleType) => {
         setUserId(userId);
         setAuthToken(token);
+        setUserRole(userRole);
         setIsAuthenticated(true);
     };
 
@@ -34,7 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout, userId }}>
+        <AuthContext.Provider value={{isAuthenticated, login, logout, userId, userRole}}>
             {children}
         </AuthContext.Provider>
     );

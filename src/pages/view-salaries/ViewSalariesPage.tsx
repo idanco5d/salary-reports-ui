@@ -53,23 +53,22 @@ export const ViewSalariesPage = () => {
     });
 
     const queryClient = useQueryClient();
+
+    const updateSalaryInCache = (salary: SalaryDto) => {
+        queryClient.setQueryData<SalaryDto[]>(['salaries', selectedRoleId], (oldSalaries) => {
+            const otherSalaries = oldSalaries?.filter(s => s.id !== salary.id) || [];
+            return [...otherSalaries, salary].sort((a, b) => a.id.localeCompare(b.id));
+        });
+    };
+
     const toggleLikeMutation = useMutation({
         mutationFn: toggleLikeSalary,
-        onSuccess: (salary: SalaryDto) => {
-            queryClient.setQueryData<SalaryDto[]>(['salaries', selectedRoleId], (oldSalaries) => {
-                const otherSalaries = oldSalaries?.filter(s => s.id !== salary.id) || [];
-                return [...otherSalaries, salary];
-            })
-        }
+        onSuccess: updateSalaryInCache
     });
+
     const toggleDisLikeMutation = useMutation({
         mutationFn: toggleDislikeSalary,
-        onSuccess: (salary: SalaryDto) => {
-            queryClient.setQueryData<SalaryDto[]>(['salaries', selectedRoleId], (oldSalaries) => {
-                const otherSalaries = oldSalaries?.filter(s => s.id !== salary.id) || [];
-                return [...otherSalaries, salary];
-            })
-        }
+        onSuccess: updateSalaryInCache
     });
 
     const handleCategoryChange = async (categoryId: string) => {
@@ -153,7 +152,7 @@ export const ViewSalariesPage = () => {
                     </Box>
                 </Stack>
             </Paper>
-
+            {(!salaries || salaries.length === 0) && selectedRoleId && (<Typography>No salaries have been reported yet for this role.</Typography>)}
             {salaries && salaries.length > 0 && (
                 <TableContainer component={Paper}>
                     <Table>
@@ -167,7 +166,7 @@ export const ViewSalariesPage = () => {
                                 <TableCell><strong>Vacation Days</strong></TableCell>
                                 <TableCell><strong>Employer Type</strong></TableCell>
                                 <TableCell><strong>Period</strong></TableCell>
-                                <TableCell align="center"><strong>Feedback</strong></TableCell>
+                                <TableCell align="center"><strong>Like/Dislike</strong></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

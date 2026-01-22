@@ -22,6 +22,7 @@ import {useQuery} from "@tanstack/react-query";
 export const ReportSalaryPage = () => {
     const [newSalary, setNewSalary] = useState<CreateSalaryDto>(getDefaultSalary());
     const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>(undefined);
+    const [submitSuccess, setSubmitSuccess] = useState(false);
 
     const { data: categories } = useQuery({
         queryKey: ['roleCategories'],
@@ -43,6 +44,11 @@ export const ReportSalaryPage = () => {
         await createSalary(newSalary);
         setNewSalary(getDefaultSalary());
         setSelectedCategoryId(undefined);
+        setSubmitSuccess(true);
+
+        setTimeout(() => {
+            setSubmitSuccess(false);
+        }, 2000);
     };
 
     // TODO validations, refactor to different components
@@ -245,9 +251,15 @@ export const ReportSalaryPage = () => {
                         variant="contained"
                         size="large"
                         onClick={handleSubmit}
-                        sx={{ mt: 2 }}
+                        sx={{
+                            mt: 2,
+                            backgroundColor: submitSuccess ? 'green' : undefined,
+                            '&:hover': {
+                                backgroundColor: submitSuccess ? 'green' : undefined,
+                            }
+                        }}
                     >
-                        Submit Salary Report
+                        {submitSuccess ? '✓ Submitted!' : 'Submit Salary Report'}
                     </Button>
                 </Stack>
             </Paper>

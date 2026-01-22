@@ -3,6 +3,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import {CircularProgress} from "@mui/material";
 
+import {UserRole} from "./api/user.ts";
+
 export const AuthCallback = () => {
     const [searchParams] = useSearchParams();
     const { login } = useAuth();
@@ -11,9 +13,10 @@ export const AuthCallback = () => {
     useEffect(() => {
         const token = searchParams.get('token');
         const userId = searchParams.get('userId');
+        const userRole = searchParams.get('role');
 
-        if (token && userId) {
-            login(token, userId);
+        if (token && userId && userRole && (userRole === UserRole.USER || userRole === UserRole.ADMIN)) {
+            login(token, userId, userRole);
             navigate('/home');
         } else {
             navigate('/login');

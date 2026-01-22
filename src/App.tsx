@@ -10,8 +10,9 @@ import {ReportSalaryPage} from "./pages/report-salary/ReportSalaryPage.tsx";
 import {WelcomePage} from "./pages/WelcomePage.tsx";
 import {Layout} from "./Layout.tsx";
 import {ViewSalariesPage} from "./pages/view-salaries/ViewSalariesPage.tsx";
+import {UsersManagementPage} from "./pages/user-management/UsersManagementPage.tsx";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 function App() {
     return <AuthProvider>
@@ -26,6 +27,7 @@ function App() {
                         <Route path="/role-category" element={<RoleCategoryPage/>}/>
                         <Route path="/role" element={<RolePage/>}/>
                         <Route path="/view-salaries" element={<ViewSalariesPage/>}/>
+                        <Route path="/users-management" element={<UsersManagementPage/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

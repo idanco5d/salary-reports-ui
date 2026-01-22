@@ -19,17 +19,23 @@ export const SelectCategory = ({currentCategory, setCurrentCategory}: SelectCate
         }
     }
 
-    return <Stack direction="row" spacing={2} style={{alignItems: "center", marginBottom: 12}}>
-        <Typography variant="h6" gutterBottom>
-            Role Category:
-        </Typography>
-        <Select variant="standard"
-                onChange={(e) => onChangeCategory(e.target.value)}
-                value={currentCategory?.id}
-                input={<OutlinedInput/>}>
-            {roleCategories?.map((category) =>
-                <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
-            )}
-        </Select>
-    </Stack>
+    const roleCategoriesExist = roleCategories && roleCategories.length > 0;
+    return <>
+        {roleCategoriesExist &&
+            <Stack direction="row" spacing={2} style={{alignItems: "center", marginBottom: 12}}>
+                <Typography variant="h6" gutterBottom>
+                    Role Category:
+                </Typography>
+                <Select variant="standard"
+                        onChange={(e) => onChangeCategory(e.target.value)}
+                        value={currentCategory?.id ?? ''}
+                        input={<OutlinedInput/>}>
+                    {roleCategories?.map((category) =>
+                        <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
+                    )}
+                </Select>
+            </Stack>}
+        {!roleCategoriesExist &&
+            <Typography>Please create role categories first.</Typography>}
+    </>
 }
