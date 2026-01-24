@@ -16,7 +16,8 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {Outlet, useNavigate} from 'react-router-dom';
-import {useAuth} from '../auth/AuthContext.tsx';
+
+import {useAuth} from "../auth/UseAuth.ts";
 
 export const Layout = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -51,7 +52,6 @@ export const Layout = () => {
 
     const drawerWidth = 250;
 
-    // TODO refactor to different components
     return (
         <Box sx={{display: 'flex'}}>
             <AppBar position="fixed" sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}>

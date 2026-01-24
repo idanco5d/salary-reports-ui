@@ -22,6 +22,7 @@ export const clearAuthToken = () => {
     authToken = null;
 };
 
+// Add jwt token to each request
 apiClient.interceptors.request.use((config) => {
     if (authToken) {
         config.headers.Authorization = `Bearer ${authToken}`;
@@ -98,7 +99,7 @@ function handleFailedRefresh(refreshError: unknown) {
     return Promise.reject(refreshError);
 }
 
-function processQueue(error: unknown, token: string | null = null) {
+function processQueue(error: unknown, token: string | null) {
     failedQueue.forEach((promise) => {
         if (error) {
             promise.reject(error);
