@@ -1,16 +1,15 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import {screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { RoleCategoryPage } from './RoleCategoryPage';
+import {RoleCategoryPage} from './RoleCategoryPage';
 import * as roleCategoryApi from '../../api/roleCategory';
-import { vi } from 'vitest';
-import {RenderWithQueryClient} from "../../test-utils/RenderWithQueryClient.tsx";
+import {vi} from 'vitest';
+import {renderWithQueryClient} from "../../test-utils/RenderWithQueryClient.tsx";
 import type {RoleCategory} from "../../model/roleCategory.ts";
 
 vi.mock('../../api/roleCategory');
 
 describe('RoleCategoryPage', () => {
     beforeEach(() => {
-        vi.clearAllMocks();
         vi.resetAllMocks();
     });
 
@@ -25,7 +24,7 @@ describe('RoleCategoryPage', () => {
             name: 'Design',
         });
 
-        render(<RoleCategoryPage />, { wrapper: RenderWithQueryClient });
+        renderWithQueryClient(<RoleCategoryPage />);
 
         await fillNameAndSubmit();
 
@@ -53,7 +52,7 @@ describe('RoleCategoryPage', () => {
             name: 'Design',
         });
 
-        render(<RoleCategoryPage />, { wrapper: RenderWithQueryClient });
+        renderWithQueryClient(<RoleCategoryPage />);
 
         await fillNameAndSubmit();
 

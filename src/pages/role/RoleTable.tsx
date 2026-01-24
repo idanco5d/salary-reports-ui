@@ -7,7 +7,7 @@ export type RoleTableProps = {
 }
 
 export const RoleTable = ({categoryRoles}: RoleTableProps) => {
-    return <TableContainer component={Paper} sx={{mt: 2}}>
+    return <TableContainer component={Paper} sx={{mt: 2}} data-testid="role-table">
         <Table>
             <TableHead>
                 <TableRow>

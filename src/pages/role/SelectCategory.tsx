@@ -27,10 +27,13 @@ export const SelectCategory = ({currentCategory, setCurrentCategory}: SelectCate
                 <Typography variant="h6" gutterBottom>
                     Role Category:
                 </Typography>
-                <Select variant="standard"
-                        onChange={(e) => onChangeCategory(e.target.value)}
-                        value={currentCategory?.id ?? ''}
-                        input={<OutlinedInput/>}>
+                <Select
+                    variant="standard"
+                    onChange={(e) => onChangeCategory(e.target.value)}
+                    value={currentCategory?.id ?? ''}
+                    input={<OutlinedInput/>}
+                    data-testid="select-role-category"
+                >
                     {roleCategories?.map((category) =>
                         <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
                     )}

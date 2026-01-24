@@ -28,12 +28,14 @@ export const CreateRoleForm = ({currentCategory, createRole}: CreateRoleFormProp
                 value={newRole?.name}
                 disabled={!currentCategory}
                 onChange={(e) => setNewRole({name: e.target.value, roleCategory: currentCategory ?? {name: ''}})}
+                data-testid="role-name-input"
                 fullWidth
             />
             <Button
                 variant="contained"
                 onClick={handleCreate}
                 sx={{alignSelf: 'center'}}
+                data-testid="create-role-button"
             >
                 Create Role
             </Button>
