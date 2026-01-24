@@ -24,12 +24,14 @@ export const CreateRoleCategoryForm = ({createCategory}: CreateRoleCategoryFormP
                 label="Category Name"
                 value={newCategory.name}
                 onChange={(e) => setNewCategory({name: e.target.value})}
+                data-testid="category-name-input"
                 fullWidth
             />
             <Button
                 variant="contained"
                 onClick={handleCreate}
                 sx={{alignSelf: 'center'}}
+                data-testid="create-category-button"
             >
                 Create Category
             </Button>
