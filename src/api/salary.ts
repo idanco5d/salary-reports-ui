@@ -51,7 +51,7 @@ export const Education = {
     PHD: 'PHD'
 } as const;
 
-type TypeOfEducation = typeof Education[keyof typeof Education];
+export type TypeOfEducation = typeof Education[keyof typeof Education];
 
 export const EmployerType = {
     SMALL_STARTUP: 'SMALL_STARTUP',
@@ -65,4 +65,15 @@ export const EmployerType = {
     OTHER: 'OTHER',
 } as const;
 
-type TypeOfEmployerType = typeof EmployerType[keyof typeof EmployerType];
+export type TypeOfEmployerType = typeof EmployerType[keyof typeof EmployerType];
+
+export const getDefaultSalary: () => CreateSalaryDto = () => ({
+    baseSalary: 0,
+    extras: 0,
+    roleId: '',
+    experienceYears: 0,
+    education: Education.NONE,
+    educationInRelevantField: true,
+    vacationDays: 12,
+    employerType: EmployerType.OTHER,
+});

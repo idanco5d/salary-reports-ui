@@ -27,16 +27,12 @@ export const UsersManagementPage = () => {
 
     const makeAdminMutation = useMutation({
         mutationFn: makeUserAdmin,
-        onSuccess: (user) => {
+        onSuccess: (newAdmin) => {
             queryClient.setQueryData<User[]>(['users'], (oldUsers) => {
-                return oldUsers?.map(u => u.id === user.id ? user : u) || [user];
+                return oldUsers?.map(existingUser => existingUser.id === newAdmin.id ? newAdmin : existingUser) || [newAdmin];
             });
         }
     });
-
-    const handleMakeAdmin = (userId: string) => {
-        makeAdminMutation.mutate(userId);
-    };
 
     if (isLoading) {
         return (
@@ -85,7 +81,7 @@ export const UsersManagementPage = () => {
                                         <Button
                                             variant="contained"
                                             size="small"
-                                            onClick={() => handleMakeAdmin(user.id)}
+                                            onClick={() => makeAdminMutation.mutate(user.id)}
                                             disabled={makeAdminMutation.isPending}
                                             startIcon={<AdminPanelSettingsIcon />}
                                         >
@@ -102,7 +98,7 @@ export const UsersManagementPage = () => {
             {users.length === 0 && (
                 <Paper sx={{p: 4, textAlign: 'center', mt: 2}}>
                     <Typography variant="h6" color="text.secondary">
-                        No users found.
+                        No users found. Please contact the administrator, since that guarantees an issue in the system if you're seeing this.
                     </Typography>
                 </Paper>
             )}

@@ -11,11 +11,14 @@ export function validateSalary(salary: CreateSalaryDto): Record<string, string> 
     if (salary.experienceYears < 0) {
         errors.experienceYears = 'Experience years must be positive';
     }
+    if (salary.experienceYears > 70) {
+        errors.experienceYears = 'Experience years seems too high';
+    }
     if (salary.vacationDays < 12) {
         errors.vacationDays = 'Vacation days are at least 12 by Israeli law';
     }
-    if (salary.vacationDays > 365) {
-        errors.vacationDays = 'Vacation days cannot exceed 365';
+    if (salary.vacationDays > 100) {
+        errors.vacationDays = 'Vacation days seems too high';
     }
     const currentYear = new Date().getFullYear();
     if (salary.startYear !== undefined && (salary.startYear < 1970 || salary.startYear > currentYear)) {
@@ -23,6 +26,9 @@ export function validateSalary(salary: CreateSalaryDto): Record<string, string> 
     }
     if (salary.endYear !== undefined && (salary.endYear < 1970 || salary.endYear > currentYear)) {
         errors.endYear = `End year must be greater than 1970 and less than ${currentYear + 1}`;
+    }
+    if (salary.endYear !== undefined && salary.startYear == undefined) {
+        errors.startYear = 'Start year must be filled if end year was filled';
     }
     return errors;
 }
