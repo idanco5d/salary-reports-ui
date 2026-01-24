@@ -1,6 +1,6 @@
 import type {FieldInputProps} from "./FieldInputProps.ts";
 import {Box, FormControl, InputLabel, MenuItem, Select, Typography} from "@mui/material";
-import {Education, type TypeOfEducation} from "../../../api/salary.ts";
+import {Education, type TypeOfEducation} from "../../../model/salary.ts";
 
 export const EducationInput = ({newSalary, setNewSalary}: FieldInputProps) => {
     return <Box>

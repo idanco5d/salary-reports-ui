@@ -1,7 +1,7 @@
 import {Box, FormControl, InputLabel, MenuItem, Paper, Select, Stack, Typography} from "@mui/material";
 import {findAllCategories} from "../../api/roleCategory.ts";
-import type {Role} from "../../api/role.ts";
 import {useQuery} from "@tanstack/react-query";
+import type {Role} from "../../model/role.ts";
 
 export type SelectRoleAndCategoryProps = {
     selectedCategoryId: string | undefined;

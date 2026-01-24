@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useAuth } from './AuthContext';
+import { useAuth } from './AuthContext.tsx';
 import {CircularProgress} from "@mui/material";
 
-import {UserRole} from "./api/user.ts";
+
+import {UserRole} from "../model/user.ts";
 
 export const AuthCallback = () => {
     const [searchParams] = useSearchParams();

@@ -16,8 +16,8 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
-import {Education, EmployerType, type SalaryDto} from "../../api/salary.ts";
 import type {UseMutateFunction} from "@tanstack/react-query";
+import {Education, EmployerType, type SalaryDto} from "../../model/salary.ts";
 
 export type SalariesTableProps = {
     salaries: SalaryDto[] | undefined;

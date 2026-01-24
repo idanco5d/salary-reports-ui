@@ -1,6 +1,6 @@
 import type {FieldInputProps} from "./FieldInputProps.ts";
 import {Box, FormControl, InputLabel, MenuItem, Select, Typography} from "@mui/material";
-import {EmployerType, type TypeOfEmployerType} from "../../../api/salary.ts";
+import {EmployerType, type TypeOfEmployerType} from "../../../model/salary.ts";
 
 export const EmployerTypeInput = ({newSalary, setNewSalary}: FieldInputProps) => {
     return <Box>

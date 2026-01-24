@@ -1,8 +1,8 @@
 import {Box, Button, TextField, Typography} from "@mui/material";
 import {useState} from "react";
-import type {Role} from "../../api/role.ts";
-import type {RoleCategory} from "../../api/roleCategory.ts";
 import type {UseMutateFunction} from "@tanstack/react-query";
+import type {Role} from "../../model/role.ts";
+import type {RoleCategory} from "../../model/roleCategory.ts";
 
 export type CreateRoleFormProps = {
     currentCategory: RoleCategory;

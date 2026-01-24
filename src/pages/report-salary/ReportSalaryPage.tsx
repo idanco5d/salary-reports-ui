@@ -1,6 +1,5 @@
 import {Container, Paper, Stack, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-import {type CreateSalaryDto, getDefaultSalary} from "../../api/salary.ts";
 import {validateSalary} from "./ValidateSalary.ts";
 import {RoleCategoryInput} from "./field-inputs/RoleCategoryInput.tsx";
 import {RoleInput} from "./field-inputs/RoleInput.tsx";
@@ -10,6 +9,7 @@ import {EmployerTypeInput} from "./field-inputs/EmployerTypeInput.tsx";
 import {YearInput} from "./field-inputs/YearInput.tsx";
 import {SubmitButton} from "./field-inputs/SubmitButton.tsx";
 import {NumericInput} from "./field-inputs/NumericInput.tsx";
+import {type CreateSalaryDto, getDefaultSalary} from "../../model/salary.ts";
 
 export const ReportSalaryPage = () => {
     const [newSalary, setNewSalary] = useState<CreateSalaryDto>(getDefaultSalary());

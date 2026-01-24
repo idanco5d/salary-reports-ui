@@ -1,5 +1,5 @@
-import type {RoleCategory} from "./roleCategory.ts";
-import {apiClient} from "./client.ts";
+import {apiClient} from "./apiClient.ts";
+import type {Role} from "../model/role.ts";
 
 const baseUrl = '/role';
 
@@ -11,10 +11,4 @@ export async function createRole(role: Role): Promise<Role> {
 export async function getRolesByCategoryId(categoryId: string): Promise<Role[]> {
     const response = await apiClient.get(baseUrl + `/category/${categoryId}`)
     return response.data
-}
-
-export type Role = {
-    id?: string,
-    name: string,
-    roleCategory: RoleCategory
 }

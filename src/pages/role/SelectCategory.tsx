@@ -1,6 +1,7 @@
-import {findAllCategories, type RoleCategory} from "../../api/roleCategory.ts";
+import {findAllCategories} from "../../api/roleCategory.ts";
 import {MenuItem, OutlinedInput, Select, Stack, Typography} from "@mui/material";
 import {useQuery} from "@tanstack/react-query";
+import type {RoleCategory} from "../../model/roleCategory.ts";
 
 export type SelectCategoryProps = {
     currentCategory: RoleCategory | undefined;

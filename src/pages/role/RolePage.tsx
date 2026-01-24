@@ -1,11 +1,12 @@
 import {Container, Paper, Typography} from "@mui/material";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {type RoleCategory} from "../../api/roleCategory.ts";
 import {useState} from "react";
-import {createRole, getRolesByCategoryId, type Role} from "../../api/role.ts";
+import {createRole, getRolesByCategoryId} from "../../api/role.ts";
 import {SelectCategory} from "./SelectCategory.tsx";
 import {CreateRoleForm} from "./CreateRoleForm.tsx";
 import {RoleTable} from "./RoleTable.tsx";
+import type {Role} from "../../model/role.ts";
+import type {RoleCategory} from "../../model/roleCategory.ts";
 
 export const RolePage = () => {
     const [currentCategory, setCurrentCategory] = useState<RoleCategory | undefined>(undefined)

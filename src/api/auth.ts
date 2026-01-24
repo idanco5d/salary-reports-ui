@@ -1,4 +1,4 @@
-import {apiClient} from "./client.ts";
+import {apiClient} from "./apiClient.ts";
 
 const baseUrl = 'http://localhost:3001/auth';
 

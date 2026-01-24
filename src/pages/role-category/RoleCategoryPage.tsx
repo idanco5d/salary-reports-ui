@@ -1,8 +1,9 @@
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
 import {Container, Typography} from '@mui/material';
-import {createRoleCategory, findAllCategories, type RoleCategory} from '../../api/roleCategory.ts';
+import {createRoleCategory, findAllCategories} from '../../api/roleCategory.ts';
 import {CreateRoleCategoryForm} from "./CreateRoleCategoryForm.tsx";
 import {RoleCategoryTable} from "./RoleCategoryTable.tsx";
+import type {RoleCategory} from "../../model/roleCategory.ts";
 
 export const RoleCategoryPage = () => {
     const queryClient = useQueryClient();

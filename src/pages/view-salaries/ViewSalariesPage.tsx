@@ -1,10 +1,11 @@
 import {Container, Typography} from "@mui/material";
 import {useState} from "react";
-import {getSalariesByRole, type SalaryDto, toggleDislikeSalary, toggleLikeSalary} from "../../api/salary.ts";
+import {getSalariesByRole, toggleDislikeSalary, toggleLikeSalary} from "../../api/salary.ts";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {getRolesByCategoryId} from "../../api/role.ts";
 import {SelectCategoryAndRole} from "./SelectCategoryAndRole.tsx";
 import {SalariesTable} from "./SalariesTable.tsx";
+import type {SalaryDto} from "../../model/salary.ts";
 
 export const ViewSalariesPage = () => {
     const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>(undefined);

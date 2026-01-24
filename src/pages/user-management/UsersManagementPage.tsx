@@ -15,7 +15,8 @@ import {
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import PersonIcon from '@mui/icons-material/Person';
-import {findAllUsers, makeUserAdmin, type User, UserRole} from "../../api/user.ts";
+import {findAllUsers, makeUserAdmin} from "../../api/user.ts";
+import {type User, UserRole} from "../../model/user.ts";
 
 export const UsersManagementPage = () => {
     const queryClient = useQueryClient();

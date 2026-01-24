@@ -1,7 +1,8 @@
 import {createContext, type ReactNode, useContext, useEffect, useState} from 'react';
-import {clearAuthToken, getAuthToken, setAuthToken} from './api/client';
-import {logoutCall} from "./api/auth.ts";
-import type {UserRoleType} from "./api/user.ts";
+import {clearAuthToken, getAuthToken, setAuthToken} from '../api/apiClient.ts';
+import {logoutCall} from "../api/auth.ts";
+
+import type {UserRoleType} from "../model/user.ts";
 
 interface AuthContextType {
     isAuthenticated: boolean;

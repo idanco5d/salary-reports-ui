@@ -16,7 +16,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {Outlet, useNavigate} from 'react-router-dom';
-import {useAuth} from './AuthContext';
+import {useAuth} from '../auth/AuthContext.tsx';
 
 export const Layout = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);

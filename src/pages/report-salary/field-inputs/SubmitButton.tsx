@@ -1,6 +1,7 @@
-import {createSalary, type CreateSalaryDto, getDefaultSalary} from "../../../api/salary.ts";
+import {createSalary} from "../../../api/salary.ts";
 import {useState} from "react";
 import {Button} from "@mui/material";
+import {type CreateSalaryDto, getDefaultSalary} from "../../../model/salary.ts";
 
 export type SubmitButtonProps = {
     newSalary: CreateSalaryDto;

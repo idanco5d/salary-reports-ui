@@ -1,5 +1,5 @@
-import type {RoleCategory} from "../../api/roleCategory.ts";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import type {RoleCategory} from "../../model/roleCategory.ts";
 
 export type ExistingCategoriesTableProps = {
     categories: RoleCategory[] | undefined;

@@ -1,6 +1,7 @@
 import type {FieldInputProps} from "./FieldInputProps.ts";
 import {Box, TextField, Typography} from "@mui/material";
-import type {CreateSalaryDto} from "../../../api/salary.ts";
+
+import type {CreateSalaryDto} from "../../../model/salary.ts";
 
 export type YearInputProps = FieldInputProps & {
     label: string;

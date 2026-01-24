@@ -1,4 +1,4 @@
-import type {CreateSalaryDto} from "../../api/salary.ts";
+import type {CreateSalaryDto} from "../../model/salary.ts";
 
 export function validateSalary(salary: CreateSalaryDto): Record<string, string> {
     const errors: Record<string, string> = {};
