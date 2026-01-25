@@ -137,8 +137,8 @@ describe('RolePage', () => {
 
     async function selectCategory(categoryText: string) {
         await userEvent.click(screen.getByRole('combobox'));
-        const engineeringTextElement = await waitFor(() => screen.getByText(categoryText));
-        await userEvent.click(engineeringTextElement);
+        const categoryTextElement = await waitFor(() => screen.getByText(categoryText));
+        await userEvent.click(categoryTextElement);
     }
 
     async function fillAndSubmitRole() {
