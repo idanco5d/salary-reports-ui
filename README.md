@@ -59,6 +59,7 @@ Before running this application, ensure you have the following installed:
 
 ## Future Improvements
 - [ ] Implement advanced salary filtering (by date range, education, etc.)
+- [ ] Add more testing files like for RoleCategoryPage and RolePage
 - [ ] Implement user profile page to view/edit own salary reports
 - [ ] Add export functionality (CSV, PDF) for salary data
 - [ ] Implement paging for large datasets
