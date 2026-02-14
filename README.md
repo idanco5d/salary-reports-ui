@@ -50,22 +50,6 @@ Before running this application, ensure you have the following installed:
 - Tests cover component rendering, user interactions, and API integration
 - Uses `@testing-library/react` for component testing with realistic user interactions
 
-## 📄 Project Structure
-```
-src/
-├── api/              # API client functions and endpoints
-├── pages/            # Page components organized by feature
-│   ├── role-category/
-│   ├── role/
-│   ├── report-salary/
-│   ├── view-salaries/
-│   └── user-management/
-├── test-utils/       # Testing utilities and helpers
-├── AuthContext.tsx   # Authentication context and hooks
-├── Layout.tsx        # Main layout with navigation
-└── App.tsx           # Root component with routing
-```
-
 ## 🔐 Authentication Flow
 1. User clicks "Sign in with Google" on login page
 2. Redirected to Google OAuth consent screen
